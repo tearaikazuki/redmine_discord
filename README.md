@@ -7,8 +7,9 @@ via [Discord's Webhook API](https://discordapp.com/developers/docs/resources/web
 1. Go to `<Redmine Dir>/plugins` and execute
     ```
     git clone https://github.com/kory33/redmine_discord
-    cd ./redmine_discord
     bundle install
+    cd ../
+    bundle exec rake redmine:plugins:migrate RAILS_ENV=production
     ```
 2. Restart Redmine
 
