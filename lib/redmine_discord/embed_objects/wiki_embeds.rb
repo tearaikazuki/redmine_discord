@@ -7,6 +7,10 @@ module RedmineDiscord
       @wrapped_page = WrappedWikiPage.new context[:page]
     end
 
+    def notified_users
+      ''
+    end
+
     def to_embed_array
       [{
            url: @wrapped_page.resolve_absolute_url,

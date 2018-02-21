@@ -32,6 +32,7 @@ module RedmineDiscord
       {
           username: Setting.plugin_redmine_discord['webhook_username'],
           avatar_url: Setting.plugin_redmine_discord['webhook_avatar_url'],
+          content: embed_object.notified_users,
           embeds: embed_object.to_embed_array
       }
     end

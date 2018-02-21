@@ -8,6 +8,23 @@ module RedmineDiscord
       @wrapped_issue = WrappedIssue.new context[:issue]
     end
 
+    def notified_users
+    notified_users = @wrapped_issue.notified_users
+    notified_discord_users = []
+    if notified_users != nil
+      custom_field = UserCustomField.find_by_name('Discord UserId')
+      notified_users.each do |user|
+        discord_id = begin
+                       user.custom_field_value(custom_field)
+                     rescue
+                       []
+                     end
+        notified_discord_users.push("<@#{discord_id}>") if discord_id
+      end
+    end
+    notified_discord_users.join(' ')
+    end
+
     def to_embed_array
       # prepare fields in heading / remove nil fields
       fields = @wrapped_issue.to_creation_information_fields.compact
@@ -40,6 +57,23 @@ module RedmineDiscord
     def initialize(context)
       @wrapped_issue = WrappedIssue.new context[:issue]
       @wrapped_journal = WrappedJournal.new context[:journal]
+    end
+
+    def notified_users
+      notified_users = @wrapped_issue.notified_users
+      notified_discord_users = []
+      if notified_users != nil
+        custom_field = UserCustomField.find_by_name('Discord UserId')
+        notified_users.each do |user|
+          discord_id = begin
+                         user.custom_field_value(custom_field)
+                       rescue
+                         []
+                       end
+          notified_discord_users.push("<@#{discord_id}>") if discord_id
+        end
+      end
+      notified_discord_users.join(' ')
     end
 
     def to_embed_array

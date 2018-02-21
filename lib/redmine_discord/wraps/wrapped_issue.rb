@@ -21,6 +21,10 @@ module RedmineDiscord
       url_of @issue.id
     end
 
+    def notified_users
+      @issue.notified_users
+    end
+
     def to_creation_information_fields
       display_attributes = ['author_id', 'assigned_to_id', 'priority_id', 'due_date',
                             'status_id', 'done_ratio', 'estimated_hours',

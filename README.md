@@ -11,19 +11,25 @@ via [Discord's Webhook API](https://discordapp.com/developers/docs/resources/web
     cd ../
     bundle exec rake redmine:plugins:migrate RAILS_ENV=production
     ```
-2. Restart Redmine
+1. Restart Redmine
 
 ### Settings Webhook URLs
 
 1. From `Administration > Custom fields`, create a custom field for `Projects`
-2. Configure the properties as follow:
-  * "Format" to `List`
-  * "Name" to `Discord Webhooks`(case-sensitive)
-  * Check "Multiple values"
-  * Uncheck "Visible" (Recommended)
-  * Paste Webhook URLs in "Possible values", one per line
-3. Save the custom field
-4. Select `Discord Webhooks` in projects' Settings
+1. Configure the properties as follow:
+    * "Format" to `List`
+    * "Name" to `Discord Webhooks`(case-sensitive)
+    * Check "Multiple values"
+    * Uncheck "Visible" (Recommended)
+    * Paste Webhook URLs in "Possible values", one per line
+1. create a custom field for `Users`
+1. Configure the properties as follow:
+    * "Format" to `Text`
+    * "Name" to `Discord UserId`(case-sensitive)
+    * "Regular expression" to `^[0-9]+$`(Recommended)
+1. Save the custom field
+1. Select `Discord Webhooks` in projects' Settings
+1. Setting `Discord UserId` in My account' Settings
 
 and you are done!
 
